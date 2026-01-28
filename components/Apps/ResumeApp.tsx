@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Download, Mail, MapPin, ExternalLink } from 'lucide-react';
 
@@ -7,23 +8,23 @@ const ResumeApp: React.FC = () => {
       {/* Header */}
       <header className="border-b border-white/10 pb-8 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 mb-2 font-serif">
-            Alex Developer
+          <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 mb-2 font-serif uppercase tracking-tight">
+            ROSHAN IMMANUEL E
           </h1>
-          <p className="text-xl text-white/60 font-light">Senior Frontend Engineer & UI Designer</p>
+          <p className="text-xl text-white/60 font-light">Full Stack Developer & Tech Innovator</p>
         </div>
         <div className="flex flex-col items-start md:items-end gap-2 text-sm text-white/50">
           <div className="flex items-center gap-2">
-            <MapPin size={14} />
-            <span>San Francisco, CA</span>
-          </div>
-          <div className="flex items-center gap-2">
             <Mail size={14} />
-            <span>alex@example.com</span>
+            <span>roshanimmanuel10@gmail.com</span>
           </div>
+          <a href="https://linkedin.com/in/roshan-immanuel-e-1b1aa4353" target="_blank" className="flex items-center gap-2 hover:text-white transition-colors">
+            <ExternalLink size={14} />
+            <span>LinkedIn Profile</span>
+          </a>
           <button className="mt-2 px-4 py-2 bg-white text-black rounded-full text-xs font-semibold hover:bg-white/90 transition-colors flex items-center gap-2 group">
             <Download size={14} />
-            Download PDF
+            Download Resume
           </button>
         </div>
       </header>
@@ -35,35 +36,31 @@ const ResumeApp: React.FC = () => {
           Experience
         </h2>
         
-        <div className="space-y-8 border-l border-white/10 ml-1 pl-8 relative">
+        <div className="space-y-10 border-l border-white/10 ml-1 pl-8 relative">
           {[
             {
-              role: "Senior Frontend Engineer",
-              company: "Tech Giant Inc.",
-              period: "2021 - Present",
-              desc: "Leading the design system architecture and core product features using React, TypeScript, and WebGL.",
-              tags: ["React", "WebGL", "Team Lead"]
+              role: "Trainee",
+              company: "Gen AI Club",
+              desc: "Focusing on Generative AI research and development. Building RAG (Retrieval-Augmented Generation) Systems integrated with Vector Databases for semantic search.",
+              tags: ["Gen AI", "RAG Systems", "Vector DB"]
             },
             {
-              role: "Creative Developer",
-              company: "Digital Agency",
-              period: "2019 - 2021",
-              desc: "Created award-winning immersive web experiences for global brands. Specialized in GSAP and Three.js animations.",
-              tags: ["Three.js", "GSAP", "Creative"]
+              role: "Member",
+              company: "Nexus Club",
+              desc: "Collaborating with a network of developers on community projects and technological research within the university ecosystem.",
+              tags: ["Collaboration", "Community", "Tech"]
             },
             {
-              role: "Frontend Developer",
-              company: "Startup Hub",
-              period: "2017 - 2019",
-              desc: "Early employee. Built the MVP from scratch and scaled it to 100k+ daily users.",
-              tags: ["Vue", "Node.js"]
+              role: "Corporate Relations",
+              company: "E-Cell",
+              desc: "Understanding the startup landscape, exploring funding cycles, networking with entrepreneurs, and learning the operational fundamentals of growing a business.",
+              tags: ["Funding", "Networking", "Startups"]
             }
           ].map((job, i) => (
             <div key={i} className="relative group">
               <span className="absolute -left-[37px] top-1 w-4 h-4 rounded-full border-2 border-slate-800 bg-slate-600 group-hover:bg-pink-400 group-hover:border-pink-200 transition-colors" />
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                 <h3 className="text-xl font-medium text-white group-hover:text-pink-200 transition-colors">{job.role}</h3>
-                <span className="text-sm font-mono text-white/40">{job.period}</span>
               </div>
               <p className="text-lg text-white/70 mb-1">{job.company}</p>
               <p className="text-white/50 leading-relaxed max-w-2xl mb-3">{job.desc}</p>
@@ -84,11 +81,11 @@ const ResumeApp: React.FC = () => {
         <div>
           <h2 className="text-2xl font-serif font-bold mb-6 text-blue-200 flex items-center gap-3">
              <span className="w-2 h-2 rounded-full bg-blue-400"></span>
-             Core Stack
+             Specialized Tech
           </h2>
           <div className="flex flex-wrap gap-3">
-            {["React", "TypeScript", "Next.js", "Node.js", "Tailwind CSS", "Framer Motion", "PostgreSQL", "GraphQL"].map(skill => (
-              <span key={skill} className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-lg text-blue-200 hover:bg-blue-500/20 transition-colors cursor-default">
+            {["C++", "MAX30102", "Vector DB", "RAG Systems", "ML", "Decision Trees", "NASA Equations", "IoT"].map(skill => (
+              <span key={skill} className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-lg text-blue-200 hover:bg-blue-500/20 transition-colors cursor-default font-mono text-sm">
                 {skill}
               </span>
             ))}
@@ -98,11 +95,11 @@ const ResumeApp: React.FC = () => {
         <div>
           <h2 className="text-2xl font-serif font-bold mb-6 text-purple-200 flex items-center gap-3">
              <span className="w-2 h-2 rounded-full bg-purple-400"></span>
-             Design
+             Ecosystem
           </h2>
           <div className="flex flex-wrap gap-3">
-            {["Figma", "UI/UX", "3D Modeling", "Motion Design", "Prototyping", "Design Systems"].map(skill => (
-              <span key={skill} className="px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-200 hover:bg-purple-500/20 transition-colors cursor-default">
+            {["Corporate Relations", "Startup Operations", "Funding Analysis", "Networking", "AI Research"].map(skill => (
+              <span key={skill} className="px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-lg text-purple-200 hover:bg-purple-500/20 transition-colors cursor-default text-sm">
                 {skill}
               </span>
             ))}

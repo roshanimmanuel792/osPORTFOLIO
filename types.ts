@@ -1,3 +1,4 @@
+
 import { ReactNode } from 'react';
 
 export interface AppIcon {
@@ -27,5 +28,5 @@ export enum AppID {
   RESUME = 'resume',
   ABOUT = 'about',
   CONTACT = 'contact',
-  SPOTIFY = 'spotify'
+  TERMINAL = 'terminal'
 }

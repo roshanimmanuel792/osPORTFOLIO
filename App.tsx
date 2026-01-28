@@ -1,40 +1,41 @@
-import React, { useState } from 'react';
-import { User, Briefcase, FileText, Mail, Music, Layers } from 'lucide-react';
+
+import React, { useState, useEffect } from 'react';
+import { User, FileText, Mail, Layers, Terminal as TerminalIcon } from 'lucide-react';
 import { AppID, AppIcon, WindowState } from './types';
 import AdaptiveBackground from './components/UI/AdaptiveBackground';
-import CustomCursor from './components/UI/CustomCursor';
 import Taskbar from './components/System/Taskbar';
 import Window from './components/System/Window';
 import DesktopIcon from './components/System/DesktopIcon';
 import ProjectsApp from './components/Apps/ProjectsApp';
 import ResumeApp from './components/Apps/ResumeApp';
 import AboutApp from './components/Apps/AboutApp';
+import TerminalApp from './components/Apps/TerminalApp';
+import LoginScreen from './components/System/LoginScreen';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // App Configuration
 const APPS: AppIcon[] = [
   { id: AppID.ABOUT, label: 'About Me', icon: <User size={28} />, color: '#60A5FA' },
   { id: AppID.PROJECTS, label: 'Projects', icon: <Layers size={28} />, color: '#F472B6' },
   { id: AppID.RESUME, label: 'Resume', icon: <FileText size={28} />, color: '#34D399' },
+  { id: AppID.TERMINAL, label: 'Terminal', icon: <TerminalIcon size={28} />, color: '#10B981' },
   { id: AppID.CONTACT, label: 'Contact', icon: <Mail size={28} />, color: '#FBBF24' },
-  { id: AppID.SPOTIFY, label: 'Vibes', icon: <Music size={28} />, color: '#1DB954' },
 ];
 
 const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [windows, setWindows] = useState<WindowState[]>([]);
   const [maxZIndex, setMaxZIndex] = useState(10);
 
   const openApp = (id: string) => {
     setWindows(prev => {
-      // Check if already open
       const exists = prev.find(w => w.id === id);
       const newZ = maxZIndex + 1;
       setMaxZIndex(newZ);
 
       if (exists) {
-        // If minimized, restore it. If open, bring to front.
         return prev.map(w => w.id === id ? { ...w, isMinimized: false, zIndex: newZ } : w);
       }
-      // Open new window
       return [...prev, { id, isOpen: true, isMinimized: false, zIndex: newZ }];
     });
   };
@@ -53,10 +54,8 @@ const App: React.FC = () => {
     setWindows(prev => prev.map(w => w.id === id ? { ...w, zIndex: newZ } : w));
   };
 
-  // Helper to get window title
   const getAppTitle = (id: string) => APPS.find(a => a.id === id)?.label || 'Window';
 
-  // Helper to render content based on ID
   const renderAppContent = (id: string) => {
     switch (id) {
       case AppID.PROJECTS:
@@ -65,20 +64,21 @@ const App: React.FC = () => {
         return <ResumeApp />;
       case AppID.ABOUT:
         return <AboutApp />;
+      case AppID.TERMINAL:
+        return (
+          <TerminalApp 
+            onRunApp={openApp} 
+            availableApps={APPS.map(a => ({ id: a.id, label: a.label }))} 
+          />
+        );
       case AppID.CONTACT:
         return (
-          <div className="flex items-center justify-center h-full text-white/50 flex-col gap-4">
-             <Mail size={48} className="text-pink-400" />
-             <p>Drop a mail at <span className="text-white font-medium select-text">hello@auraos.dev</span></p>
-          </div>
-        );
-      case AppID.SPOTIFY:
-        return (
-          <div className="flex items-center justify-center h-full text-white/50 flex-col gap-4 p-8 text-center">
-             <Music size={48} className="text-green-500 animate-pulse" />
-             <p className="max-w-xs">Listening to <span className="text-white">Lo-Fi Beats to Code To</span> on Spotify.</p>
-             <div className="w-full h-1 bg-white/10 rounded-full mt-2 overflow-hidden">
-               <div className="h-full bg-green-500 w-2/3 animate-[width_2s_ease-in-out_infinite]" />
+          <div className="flex items-center justify-center h-full text-white/50 flex-col gap-4 p-6">
+             <Mail size={48} className="text-yellow-400" />
+             <p className="text-center">Reach out at <br/><span className="text-white font-medium select-text">roshanimmanuel10@gmail.com</span></p>
+             <div className="flex flex-wrap justify-center gap-4 mt-4">
+               <a href="https://github.com/roshanimmanuel792" target="_blank" className="px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 transition-colors">GitHub</a>
+               <a href="https://www.linkedin.com/in/roshan-immanuel-e-1b1aa4353" target="_blank" className="px-4 py-2 bg-blue-500/10 rounded-full border border-blue-500/20 hover:bg-blue-500/20 transition-colors">LinkedIn</a>
              </div>
           </div>
         );
@@ -88,58 +88,66 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden font-sans select-none">
-      <CustomCursor />
-      <AdaptiveBackground />
+    <div className="relative w-screen h-screen overflow-hidden font-sans select-none bg-[#0a0c10]">
+      <AnimatePresence mode="wait">
+        {!isLoggedIn ? (
+          <LoginScreen key="login" onLogin={() => setIsLoggedIn(true)} />
+        ) : (
+          <motion.div
+            key="desktop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="h-full w-full"
+          >
+            <AdaptiveBackground />
+            
+            <div className="relative z-10 p-8 pt-12 grid grid-cols-1 gap-8 justify-items-start content-start h-full pointer-events-none">
+              <div className="flex flex-wrap gap-6 flex-col pointer-events-auto">
+                {APPS.map((app, index) => (
+                  <DesktopIcon 
+                    key={app.id} 
+                    app={app} 
+                    index={index} 
+                    onClick={openApp} 
+                  />
+                ))}
+              </div>
+            </div>
 
-      {/* Desktop Area - Icons Grid */}
-      <div className="relative z-10 p-8 pt-12 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-8 justify-items-start content-start h-full pointer-events-none">
-         <div className="flex flex-wrap gap-6 flex-col pointer-events-auto">
-            {APPS.map((app, index) => (
-              <DesktopIcon 
-                key={app.id} 
-                app={app} 
-                index={index} 
-                onClick={openApp} 
-              />
-            ))}
-         </div>
-      </div>
+            <div className="fixed top-8 right-8 text-right z-0 pointer-events-none hidden md:block">
+              <h1 className="text-6xl font-serif text-white/90 font-bold tracking-tighter drop-shadow-lg">
+                {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              </h1>
+              <p className="text-white/80 font-medium uppercase tracking-widest text-sm mt-1 drop-shadow-md">
+                {new Date().toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
+              </p>
+            </div>
 
-      {/* Date/Time Widget Top Right */}
-      <div className="fixed top-8 right-8 text-right z-0 pointer-events-none hidden md:block">
-         <h1 className="text-6xl font-serif text-white/20 font-bold tracking-tighter">
-           {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-         </h1>
-         <p className="text-white/40 font-medium uppercase tracking-widest text-sm mt-1">
-           {new Date().toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
-         </p>
-         <p className="text-pink-400/50 text-xs mt-2 italic">AuraOS v1.0</p>
-      </div>
+            <div className="fixed inset-0 pointer-events-none z-30">
+              {windows.map(window => (
+                <div key={window.id} className="pointer-events-auto">
+                  <Window
+                    windowState={window}
+                    title={getAppTitle(window.id)}
+                    onClose={closeWindow}
+                    onMinimize={minimizeWindow}
+                    onFocus={focusWindow}
+                  >
+                    {renderAppContent(window.id)}
+                  </Window>
+                </div>
+              ))}
+            </div>
 
-      {/* Windows Layer */}
-      <div className="fixed inset-0 pointer-events-none z-30">
-        {windows.map(window => (
-          <div key={window.id} className="pointer-events-auto">
-             <Window
-               windowState={window}
-               title={getAppTitle(window.id)}
-               onClose={closeWindow}
-               onMinimize={minimizeWindow}
-               onFocus={focusWindow}
-             >
-               {renderAppContent(window.id)}
-             </Window>
-          </div>
-        ))}
-      </div>
-
-      {/* Taskbar */}
-      <Taskbar 
-        apps={APPS} 
-        openApps={windows.filter(w => !w.isMinimized).map(w => w.id)} 
-        onAppClick={openApp} 
-      />
+            <Taskbar 
+              apps={APPS} 
+              openApps={windows.filter(w => !w.isMinimized).map(w => w.id)} 
+              onAppClick={openApp} 
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
