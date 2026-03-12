@@ -23,15 +23,15 @@ const projects: Project[] = [
     tech: ["Real-time Chat", "Anonymity Layer"],
     url: "http://like-circle-v1.vercel.app"
   },
-  { 
-    id: 2, 
-    title: "TrekGuardian", 
-    category: "IoT + ML Safety Device", 
-    description: "Device that predicts and alerts users about high-altitude risks in 3 ways. Uses NASA Equations to derive altitude precisely.",
-    image: "https://images.unsplash.com/photo-1527066579998-dbbae57f45ce?q=80&w=1000&auto=format&fit=crop",
-    tech: ["C++", "MAX30102", "ML (Decision Trees)", "NASA Eqs"],
-    url: "https://github.com/roshanimmanuel792"
-  },
+   { 
+     id: 2, 
+     title: "TrekGuardian", 
+     category: "IoT + ML Safety Device", 
+     description: "Device that predicts and alerts users about high-altitude risks in 3 ways. Uses NASA Equations to derive altitude precisely.",
+     image: "https://images.unsplash.com/photo-1527066579998-dbbae57f45ce?q=80&w=1000&auto=format&fit=crop",
+     tech: ["C++", "MAX30102", "ML (Decision Trees)", "NASA Eqs"],
+     url: "https://github.com/roshanimmanuel792/Trek-Guardian-SourceCode.git"
+   },
   { 
     id: 3, 
     title: "CropVision", 
