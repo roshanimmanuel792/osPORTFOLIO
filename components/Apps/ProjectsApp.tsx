@@ -116,11 +116,12 @@ const ProjectsApp: React.FC = () => {
             <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
           </div>
 
-          <motion.div 
+          <motion.button 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center gap-8 group hover:bg-white/10 transition-all"
+            onClick={() => handleProjectClick("https://github.com/roshanimmanuel792/LInuxMint_Xfce_SnapLayouts.git")}
+            className="w-full p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center gap-8 group hover:bg-white/10 transition-all cursor-pointer"
           >
             <div className="w-16 h-16 rounded-2xl bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:scale-110 transition-transform">
               <GitBranch size={32} />
@@ -129,10 +130,7 @@ const ProjectsApp: React.FC = () => {
               <h4 className="text-white text-xl font-bold mb-2">OpenSource SnapLayout Plugin</h4>
               <p className="text-white/60 text-sm">Designing and implementing an advanced tiling and snap layout management system for LinuxMint XFCE to enhance multitasking productivity.</p>
             </div>
-            <div className="px-6 py-2 bg-white/5 rounded-full border border-white/10 text-xs text-white/40 uppercase tracking-widest font-bold">
-              Development phase
-            </div>
-          </motion.div>
+          </motion.button>
         </div>
         
         <div className="mt-4 text-center pb-12">
