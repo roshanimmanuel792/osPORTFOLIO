@@ -98,13 +98,13 @@ const ResumeApp: React.FC = () => {
              <span className="w-2 h-2 rounded-full bg-blue-400"></span>
              Specialized Tech
           </h2>
-          <div className="flex flex-wrap gap-3">
-            {["C++", "MAX30102", "Vector DB", "RAG Systems", "ML", "Decision Trees", "NASA Equations", "IoT"].map(skill => (
-              <span key={skill} className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-lg text-blue-200 hover:bg-blue-500/20 transition-colors cursor-default font-mono text-sm">
-                {skill}
-              </span>
-            ))}
-          </div>
+           <div className="flex flex-wrap gap-3">
+             {["C++", "MAX30102", "Vector DB", "RAG Systems", "ML", "Decision Trees", "NASA Equations", "IoT", "Python", "React.js", "TypeScript", "Express.js", "Tailwind CSS", "PostgreSQL", "MySQL", "Java", "SpringBoot", "Unix", "Git", "Github", "Figma", "APIs", "TUI/CLI", "Twilio", "Firebase", "N8N"].map(skill => (
+               <span key={skill} className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-lg text-blue-200 hover:bg-blue-500/20 transition-colors cursor-default font-mono text-sm">
+                 {skill}
+               </span>
+             ))}
+           </div>
         </div>
         
         <div>
