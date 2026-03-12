@@ -39,7 +39,7 @@ const projects: Project[] = [
     description: "Capture and identify infected plants with high confidence rates. Provides remedies and predicts disease aggravation based on local temperature data.",
     image: "https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=1000&auto=format&fit=crop",
     tech: ["Computer Vision", "Remedy AI", "Temp Prediction"],
-    url: "https://github.com/roshanimmanuel792"
+    url: "https://github.com/roshanimmanuel792/Crop-Vision-v1.git"
   }
 ];
 

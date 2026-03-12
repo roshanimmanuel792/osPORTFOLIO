@@ -39,6 +39,12 @@ const ResumeApp: React.FC = () => {
         <div className="space-y-10 border-l border-white/10 ml-1 pl-8 relative">
           {[
             {
+              role: "JUNIOR COORDINATOR",
+              company: "IAESTE LC KARUNYA",
+              desc: "Coordinated and supported students applying for international technical internships, guiding them through documentation, applications, and exchange procedures. Managed communication between applicants, local committees and National committees to ensure smooth processing of outgoing exchanges.",
+              tags: ["Internship Coordination", "Exchange Programs", "Student Support", "Documentation"]
+            },
+            {
               role: "Trainee",
               company: "Gen AI Club",
               desc: "Focusing on Generative AI research and development. Building RAG (Retrieval-Augmented Generation) Systems integrated with Vector Databases for semantic search.",
