@@ -22,7 +22,16 @@ const ResumeApp: React.FC = () => {
             <ExternalLink size={14} />
             <span>LinkedIn Profile</span>
           </a>
-          <button className="mt-2 px-4 py-2 bg-white text-black rounded-full text-xs font-semibold hover:bg-white/90 transition-colors flex items-center gap-2 group">
+          <button 
+            onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/resume.pdf';
+              link.download = 'Roshan_Immanuel_E_Resume.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
+            className="mt-2 px-4 py-2 bg-white text-black rounded-full text-xs font-semibold hover:bg-white/90 transition-colors flex items-center gap-2 group">
             <Download size={14} />
             Download Resume
           </button>

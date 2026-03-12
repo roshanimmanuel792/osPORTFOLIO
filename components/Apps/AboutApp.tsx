@@ -33,9 +33,9 @@ const AboutApp: React.FC = () => {
            <p>
              I am a developer focused on the intersection of IoT, Machine Learning, and human-centric design. My work ranges from building anonymous global communities to high-altitude safety devices.
            </p>
-           <p>
-             With active engagement in <span className="text-white">Gen AI Club</span>, <span className="text-white">Nexus</span>, and <span className="text-white">E-Cell</span>, I thrive in environments that challenge the boundaries of what is possible with modern technology.
-           </p>
+            <p>
+              With active engagement in <span className="text-white">IAESTE LC KARUNYA</span>, <span className="text-white">Gen AI Club</span>, <span className="text-white">Nexus</span>, and <span className="text-white">E-Cell</span>, I thrive in environments that challenge the boundaries of what is possible with modern technology.
+            </p>
          </div>
 
          <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/5 pt-10">
